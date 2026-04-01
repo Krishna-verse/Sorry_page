@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sorry Miss</title>
+<link rel = 'icon' href = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOBwxUZeSl9foAXtSFkwYgImrHhJDwoyb9mw&s'>
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:"Segoe UI",sans-serif;
+}
+
+body{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#111,#1a1a1a);
+color:white;
+text-align:center;
+overflow:hidden;
+padding:20px;
+}
+
+/* responsive card */
+
+.container{
+width:100%;
+max-width:700px;
+padding:40px;
+background:rgba(255,255,255,0.06);
+border-radius:20px;
+backdrop-filter:blur(10px);
+z-index:2;
+}
+
+/* responsive headings */
+
+h1{
+font-size:clamp(28px,5vw,40px);
+margin-bottom:20px;
+color:#ff4b5c;
+}
+
+p{
+font-size:clamp(15px,2.8vw,18px);
+line-height:1.7;
+margin-bottom:25px;
+color:#ddd;
+}
+
+button{
+padding:14px 30px;
+font-size:clamp(14px,2.5vw,16px);
+border:none;
+border-radius:30px;
+background:#ff4b5c;
+color:white;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.1);
+background:#ff2e43;
+}
+
+#thanks{
+display:none;
+font-size:clamp(18px,3vw,22px);
+margin-top:20px;
+color:#7dffb3;
+}
+
+/* floating hearts bottom -> top */
+
+.floatHeart{
+position:absolute;
+bottom:-20px;
+color:#ff4b5c;
+animation:floatUp linear forwards;
+}
+
+@keyframes floatUp{
+0%{transform:translateY(0);opacity:0;}
+30%{opacity:1;}
+100%{transform:translateY(-110vh);opacity:0;}
+}
+
+/* falling hearts */
+
+.fallHeart{
+position:absolute;
+top:-20px;
+color:#ff4b5c;
+animation:fallDown linear forwards;
+}
+
+@keyframes fallDown{
+0%{transform:translateY(0);opacity:1;}
+100%{transform:translateY(110vh);opacity:0;}
+}
+
+/* mobile improvements */
+
+@media (max-width:600px){
+
+.container{
+padding:25px;
+border-radius:15px;
+}
+
+button{
+width:100%;
+padding:16px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>I'm Sorry Harshi</h1>
+
+<p>
+Harshi,<br><br>
+
+I just wanted to say I'm really sorry for the April Fool prank.<br><br>
+
+It was meant to be a joke, but I realize it might have hurt or upset you.<br><br>
+
+I respect you a lot and I value our connection. Even if it is only as friends,
+I hope we can still be on good terms.<br><br>
+
+This small website is just my way of saying that I'm genuinely sorry.
+</p>
+
+<button onclick="forgive()">Forgive Me?</button>
+
+<div id="thanks">
+Thank you for hearing me out 🤍
+</div>
+
+</div>
+
+<script>
+
+/* floating hearts before click */
+
+function createFloatingHeart(){
+
+const heart=document.createElement("div");
+heart.classList.add("floatHeart");
+heart.innerHTML="❤";
+
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(Math.random()*15+10)+"px";
+heart.style.animationDuration=(Math.random()*4+5)+"s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},9000);
+
+}
+
+setInterval(createFloatingHeart,1200);
+
+/* heart rain after click */
+
+function forgive(){
+
+document.getElementById("thanks").style.display="block";
+
+for(let i=0;i<150;i++){
+
+setTimeout(()=>{
+
+const heart=document.createElement("div");
+heart.classList.add("fallHeart");
+heart.innerHTML="❤";
+
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(Math.random()*30+15)+"px";
+heart.style.animationDuration=(Math.random()*3+2)+"s";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},5000);
+
+},i*25);
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
